@@ -33,6 +33,7 @@ class App extends Component {
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
     }
+    console.log('render', this);
     return (
       <div className="App" >
         <header>
@@ -43,7 +44,11 @@ class App extends Component {
             this.setState({
               mode:'welcome',
             });
-          }.bind(this)//function 함수 안에서는 this의 값이 컴포넌트를 가르키지 않음. 따라서 bind를 사용.
+          }.bind(this)
+          //render함수 안에서는 this는 컴포넌트, 
+          //그러나 function 함수 안에서는 this의 값이 컴포넌트를 가르키지 않음 undefine. 
+          //따라서 bind를 사용.
+          //bind 첫번째 매개변수는 해당 객체를 의미하며, 해당 함수 안에서도 사용가능.
           }>{this.state.subject.title}</a></h1>
           {this.state.subject.sub}
         </header>
