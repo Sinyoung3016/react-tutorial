@@ -22,6 +22,8 @@ class App extends Component {
     //App, 상위 컴포넌트에서 Subject, 하위 컴포넌트로 전달
   }
 
+  
+
   render() {//어떤 HTML을 만드는 가를 담당
     var _title, _desc = null;
     if (this.state.mode == 'welcome') {
@@ -35,9 +37,14 @@ class App extends Component {
       <div className="App" >
         <header>
           <h1><a href="/" onClick={function (e) {
-            console.log(e);
+            alert("HI");
             e.preventDefault(); //해당 태그의 기본적인 동작 방법을 지움, 따라서 페이지 전환이 없음.
-          }}>{this.state.subject.title}</a></h1>
+            //this.state.mode = 'welcome'; react가 변화를 인지 못함. 아래와 같이 해야함.
+            this.setState({
+              mode:'welcome',
+            });
+          }.bind(this)//function 함수 안에서는 this의 값이 컴포넌트를 가르키지 않음. 따라서 bind를 사용.
+          }>{this.state.subject.title}</a></h1>
           {this.state.subject.sub}
         </header>
 
