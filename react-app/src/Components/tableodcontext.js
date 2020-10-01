@@ -10,13 +10,12 @@ class TableOfContext extends Component {
         <li key={data[i].id}>
           <a
             href={"/content/" + data[i].id}
-            data-idid = {data[i].id}
-            onClick={function (e) {
-              var selected_id = e.target.dataset.idid; 
-              //e의 속성중 target은 해당 tag를 가르킴. 이를 통해 data의 id에 접근 가능 
+            onClick={function (id, e) {//여기
               e.preventDefault();
-              this.props.onChangePage(selected_id); //App.js의 onChangePage를 실행시킴.
-            }.bind(this)}
+              this.props.onChangePage(id); //App.js의 onChangePage를 실행시킴.
+            }.bind(this, data[i].id)} 
+            //bind의 두번째 인자로 넣어주고, function의 맨앞에 인자로 넣어줌. 
+            //새로 인자가 들어올때 마다 이때 e는 한칸 밀림.
           >{data[i].title}</a></li >)
       i++;
     }
