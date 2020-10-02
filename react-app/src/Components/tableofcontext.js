@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class TableOfContext extends Component {
+  shouldComponentUpdate(newProps, newState){
+     //굳이 render가 필요하지 않을 때, 이를 통제
+     //매개변수 : newProps, newState : 새롭게 바뀐 값과 이전 값에 접근가능.
+    if(this.props.data === newProps.data) return true;
+    else return false;
+  }
   render() {
     var lists = [];
     var data = this.props.data;

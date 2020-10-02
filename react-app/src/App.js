@@ -49,11 +49,22 @@ class App extends Component {
       onSubmit={function(_title, _desc){
        this.max_content_id++;
        var newContents = this.state.contents.concat({id:this.max_content_id, title:_title, desc:_desc});
-       //원본 데이터를 바꾸지 않아야 나중에 성능개선에 편리함. 따라서 push가 아니라 concat을 써서 원본 파일 보존
        this.setState({
          contents: newContents,
        });
-        
+       //원본 데이터를 바꾸지 않아야 나중에 성능개선에 편리함. 따라서 push가 아니라 concat을 써서 원본 파일 보존
+       //TableOfContext 컴포넌트의 shouldComponentUpdate()에서 확인하면,
+       //push는 이전값과 이후값이 같아서 함수의 의미없음
+       //concat은 이전값와 이후값이 달라서 함수 적용가능.
+       /*
+       --배열의 경우 push를 쓰고 싶을 때--
+       var newContents = Array.from(this.state.contents);
+       newContents.push({id:this.max_content_id, title:_title, desc:_desc});
+
+       --객체의 경우--
+       var object = {names:'kim'};
+       var newObject = Object.assign({age:10}, a);
+      */
       }.bind(this)}></CreateContent>
     }
     return (
