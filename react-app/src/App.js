@@ -30,10 +30,8 @@ class App extends Component {
     var i = 0;
     while (i < this.state.contents.length) {
       var data = this.state.contents[i];
-      if (data.id === this.state.selected_content_id) {
+      if (data.id === this.state.selected_content_id)
         return data;
-        break;
-      }
       i++;
     }
   }
@@ -52,27 +50,34 @@ class App extends Component {
           this.max_content_id++;
           var newContents = this.state.contents.concat({ id: this.max_content_id, title: _title, desc: _desc });
           this.setState({
-            contents: newContents
+            contents: newContents,
+            mode:'read',
+            selected_content_id: this.max_content_id,
           });
         }.bind(this)}></CreateContent>
     } else if (this.state.mode === 'update') {
-      var _content = this.getReadContent();
+      var getContent = this.getReadContent();
       _article = <UpdateContent
-        data={_content}
+        data={getContent}
         onSubmit={function (_id, _title, _desc) {
           var newContents = Array.from(this.state.contents);
           var i = 0;
           while(i < newContents.length){
-            if(newContents[i].id == _id)
-              newContents[i] = { id: _id, title: _title, desc: _desc }
+            if(newContents[i].id === _id){
+              newContents[i] = { id: _id, title: _title, desc: _desc };
+              break;
+            }
             i++;
           }
           this.setState({
-            contents: newContents
+            contents: newContents,
+            mode:'read',
+            selected_content_id: i,
           });
         }.bind(this)}></UpdateContent>
     return _article;
   }
+}
 
   render() {//어떤 HTML을 만드는 가를 담당
     return (
