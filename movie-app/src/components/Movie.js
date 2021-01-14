@@ -12,7 +12,7 @@ Movie.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-function Movie({ url, year, title, summary, poster, genres }) {
+function Movie({ id, url, year, title, summary, poster, genres }) {
   return (
     <div className="movie">
       <a href={url}>
@@ -21,7 +21,7 @@ function Movie({ url, year, title, summary, poster, genres }) {
       <div className="info">
         <Link
           to={{
-            pathname: "/movie-detail",
+            pathname: `/movie/id=${id}`,
             state: { year, title, summary, poster, genres },
           }}
         >
