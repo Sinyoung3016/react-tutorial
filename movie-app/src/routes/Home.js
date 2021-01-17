@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Movie from "../components/Movie";
-import "./Home.css";
+import styled from "styled-components";
 
 class Home extends React.Component {
   state = {
@@ -27,10 +27,10 @@ class Home extends React.Component {
       <section className="container">
         {isLoading ? (
           <div className="loader">
-            <span className="loader_text">Loading</span>
+            <span>Loading</span>
           </div>
         ) : (
-          <div className="movies">
+          <Movies_Container>
             {movies.map((movie) => (
               <Movie
                 key={movie.id}
@@ -43,11 +43,25 @@ class Home extends React.Component {
                 genres={movie.genres}
               />
             ))}
-          </div>
+          </Movies_Container>
         )}
       </section>
     );
   }
 }
+
+const Movies_Container = styled.div`
+  display: grid;
+  box-sizing: border-box;
+  padding: 50px;
+  width: 100%;
+
+  @media screen and (max-width: 1300px) {
+    grid-template-columns: 1fr;
+  }
+  @media screen and (min-width: 1300px) and (max-width: 1600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 
 export default Home;
