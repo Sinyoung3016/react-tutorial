@@ -46,7 +46,6 @@ const Link_Container = styled(Link)`
 
 const Movies = styled.div`
   height: 260px;
-  width: 85%;
   background-color: white;
   margin: 30px;
   padding: 30px;
