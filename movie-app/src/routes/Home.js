@@ -24,11 +24,11 @@ class Home extends React.Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <section className="container">
+      <section>
         {isLoading ? (
-          <div className="loader">
+          <Loader>
             <span>Loading</span>
-          </div>
+          </Loader>
         ) : (
           <Movies_Container>
             {movies.map((movie) => (
@@ -53,8 +53,9 @@ class Home extends React.Component {
 const Movies_Container = styled.div`
   display: grid;
   box-sizing: border-box;
-  padding: 50px;
+  padding: 40px;
   width: 100%;
+  background-color: #eff3f7;
 
   @media screen and (max-width: 1300px) {
     grid-template-columns: 1fr;
@@ -62,6 +63,13 @@ const Movies_Container = styled.div`
   @media screen and (min-width: 1300px) and (max-width: 1600px) {
     grid-template-columns: 1fr 1fr;
   }
+`;
+
+const Loader = styled.div`
+  position: relative;
+  top: 100px;
+  left: 45%;
+  font-weight: 300;
 `;
 
 export default Home;
